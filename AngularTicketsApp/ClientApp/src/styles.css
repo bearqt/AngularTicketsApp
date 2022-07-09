@@ -1,0 +1,18 @@
+﻿html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+input, label, button, strong {
+    display: block;
+}
+
+.search-btn {
+    margin-top: 30px !important;
+    display: block !important;
+}
+
+button[mat-raised-button] {
+    
+}
+
+.mat-form-field-infix {
+    width: 250px !important;
+}

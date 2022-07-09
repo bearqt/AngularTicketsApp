@@ -1,0 +1,36 @@
+﻿<div class="main-container">
+    <div class="left-column">
+        <h2>Портал субсидированных перевозок</h2>
+        <ul class="options">
+            <li>Поиск операций</li>
+        </ul>
+    </div>
+    <div class="right-column">
+        <h1>Поиск операций</h1>
+        <div class="forms">
+            <div class="forms__by-document">
+                <document-form style="float: left;"
+                (searchTicketsEvent)="loadDataByDocNumber($event)"
+                [buttonIsDisable]="docButtonIsDisable"
+                (inputIsSelected)="blockTicketButton($event)"
+                ></document-form>
+            </div>
+            <div class="forms__by-ticket">
+                <ticket-form style="float: left;" 
+                 (searchTicketsByTicketEvent)="loadDataByTicketNumber($event)" 
+                 [buttonIsDisable]="ticketButtonIsDisable"
+                 (inputIsSelected)="blockDocumentButton($event)"
+                ></ticket-form>
+            </div>
+        </div>
+        <mat-spinner *ngIf="!spinnerIsHidden"></mat-spinner>
+        <mat-label *ngIf="responseStatusCode==404 && tickets.length == 0">Результат не найден</mat-label>
+        <mat-label *ngIf="responseStatusCode==0 && tickets.length == 0">Сервер недоступен</mat-label>
+        <app-tickets-table [dataSource]="tickets" *ngIf="spinnerIsHidden && tickets.length > 0"
+                            [currentDocNumber]="currentDocNumber"
+                           [currentTicketNumber]="currentTicketNumber"
+                           [currentCheckbox]="currentCheckboxValue"
+        ></app-tickets-table>
+        
+    </div>
+</div>
