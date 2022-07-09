@@ -44,7 +44,7 @@ namespace AngularTicketsApp.Controllers
             }
             return NotFound();
         }
-
+        
         [HttpPost("csv_by_doc")]
         public async Task<ActionResult> ExportCsvByDocNumber(GenerateFileInputModel inputModel)
         {
@@ -64,6 +64,20 @@ namespace AngularTicketsApp.Controllers
         public async Task<ActionResult> ExportCsvByTicketNumber(GenerateFileInputModel inputModel)
         {
             var result = await _service.GetReportByTicketNumber(inputModel.TicketNumber, inputModel.AllTickets, inputModel.CompanyCode);
+            var cd = new ContentDisposition()
+            {
+                FileName = "report.csv",
+                Inline = false
+            };
+            Response.Headers.Add("Content-Disposition", cd.ToString());
+            Response.Headers.Add("Content-Type", "text/csv");
+            return Ok(result);
+        }
+        
+        [HttpPost("test")]
+        public async Task<ActionResult> FormExportCsv()
+        {
+            var result = await _service.GetReportByDocumentNumber("2215123123", "SU");
             var cd = new ContentDisposition()
             {
                 FileName = "report.csv",

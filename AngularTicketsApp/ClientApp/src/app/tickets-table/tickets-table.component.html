@@ -1,7 +1,9 @@
-<button mat-raised-button color="primary"
-        style="margin-right: 50px;"
-        (click)="downloadCsv(selectedCompany)"
->Сохранить</button>
+ <button mat-raised-button color="primary" 
+         (click)="downloadCsv(selectedCompany)"
+            style="margin-right: 50px;">
+     Сохранить
+ </button>
+
 <mat-label style="margin-right: 20px">Для авиакомпании</mat-label>
 <mat-form-field appearance="fill">
     <mat-select [(value)]="selectedCompany">

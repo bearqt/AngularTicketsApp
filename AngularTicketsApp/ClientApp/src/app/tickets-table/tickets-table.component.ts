@@ -2,6 +2,7 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {Ticket} from "../ticket";
 import {DataService} from "../data.service";
 import { saveAs } from 'file-saver';
+import * as XLSX from "xlsx" ;
 
 export interface AirlineCompany {
   name: string,
@@ -46,19 +47,30 @@ export class TicketsTableComponent implements OnInit {
   selectedCompany : string = "";
   downloadCsv(companyCode: string) {
     if (this.currentDocNumber != "") {
-      this.dataService.requestCsvByDocNumber(this.currentDocNumber, companyCode).subscribe(data => {
-        const blob = new Blob([data], { type: 'text/csv' });
-        const fileName = 'report.csv';
-        saveAs(blob, fileName);
+      this.dataService.requestCsvByDocNumber(this.currentDocNumber, companyCode).subscribe(data=> {
+        this.saveFile(data);
       });
     }
     else {
       this.dataService.requestCsvByTicketNumber(this.currentTicketNumber, companyCode, this.currentCheckbox).subscribe(data => {
-        const blob = new Blob([data], { type: 'text/csv' });
-        const fileName = 'report.csv';
-        saveAs(blob, fileName);
+        this.saveFile(data);
       });
     }
+  }
+  
+  saveFile(file) {
+    const blob = new Blob([file], { type: "text/csv" });
+    const url = window.URL.createObjectURL(blob);
+
+    // create hidden dom element (so it works in all browsers)
+    const a = document.createElement('a');
+    a.setAttribute('style', 'display:none;');
+    document.body.appendChild(a);
+
+    // create file, attach to hidden element and open hidden element
+    a.href = url;
+    a.download = "report";
+    a.click();
   }
   
   constructor(private dataService: DataService) { }
