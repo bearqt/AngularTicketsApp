@@ -76,37 +76,37 @@ namespace AngularTicketsApp
                     .HasColumnType("character varying")
                     .HasColumnName("airline_code");
 
-                entity.Property(e => e.AirlineRouteId).HasColumnName("airline_route_id");
-
-                entity.Property(e => e.AirportFromIcaoCode)
-                    .HasColumnType("character varying")
-                    .HasColumnName("airport_from_icao_code");
+                // entity.Property(e => e.AirlineRouteId).HasColumnName("airline_route_id");
+                //
+                // entity.Property(e => e.AirportFromIcaoCode)
+                //     .HasColumnType("character varying")
+                //     .HasColumnName("airport_from_icao_code");
 
                 entity.Property(e => e.AirportFromName)
                     .HasColumnType("character varying")
                     .HasColumnName("airport_from_name");
 
-                entity.Property(e => e.AirportFromRfCode)
-                    .HasColumnType("character varying")
-                    .HasColumnName("airport_from_rf_code");
+                // entity.Property(e => e.AirportFromRfCode)
+                //     .HasColumnType("character varying")
+                //     .HasColumnName("airport_from_rf_code");
 
-                entity.Property(e => e.AirportToIcaoCode)
-                    .HasColumnType("character varying")
-                    .HasColumnName("airport_to_icao_code");
+                // entity.Property(e => e.AirportToIcaoCode)
+                //     .HasColumnType("character varying")
+                //     .HasColumnName("airport_to_icao_code");
 
                 entity.Property(e => e.AirportToName)
                     .HasColumnType("character varying")
                     .HasColumnName("airport_to_name");
 
-                entity.Property(e => e.AirportToRfCode)
-                    .HasColumnType("character varying")
-                    .HasColumnName("airport_to_rf_code");
+                // entity.Property(e => e.AirportToRfCode)
+                //     .HasColumnType("character varying")
+                //     .HasColumnName("airport_to_rf_code");
 
                 entity.Property(e => e.ArriveDatetime)
-                    .HasColumnType("timestamp without time zone")
+                    // .HasColumnType("timestamp without time zone")
                     .HasColumnName("arrive_datetime");
 
-                entity.Property(e => e.ArriveDatetimeTimezone).HasColumnName("arrive_datetime_timezone");
+                // entity.Property(e => e.ArriveDatetimeTimezone).HasColumnName("arrive_datetime_timezone");
 
                 entity.Property(e => e.ArrivePlace)
                     .HasColumnType("character varying")
@@ -116,27 +116,27 @@ namespace AngularTicketsApp
                     .HasColumnType("character varying")
                     .HasColumnName("birthdate");
 
-                entity.Property(e => e.CityFromCode)
-                    .HasColumnType("character varying")
-                    .HasColumnName("city_from_code");
+                // entity.Property(e => e.CityFromCode)
+                    // .HasColumnType("character varying")
+                    // .HasColumnName("city_from_code");
 
                 entity.Property(e => e.CityFromName)
                     .HasColumnType("character varying")
                     .HasColumnName("city_from_name");
 
-                entity.Property(e => e.CityToCode)
-                    .HasColumnType("character varying")
-                    .HasColumnName("city_to_code");
+                // entity.Property(e => e.CityToCode)
+                    // .HasColumnType("character varying")
+                    // .HasColumnName("city_to_code");
 
                 entity.Property(e => e.CityToName)
                     .HasColumnType("character varying")
                     .HasColumnName("city_to_name");
 
                 entity.Property(e => e.DepartDatetime)
-                    .HasColumnType("timestamp without time zone")
+                    // .HasColumnType("timestamp without time zone")
                     .HasColumnName("depart_datetime");
 
-                entity.Property(e => e.DepartDatetimeTimezone).HasColumnName("depart_datetime_timezone");
+                // entity.Property(e => e.DepartDatetimeTimezone).HasColumnName("depart_datetime_timezone");
 
                 entity.Property(e => e.DepartPlace)
                     .HasColumnType("character varying")
@@ -154,9 +154,9 @@ namespace AngularTicketsApp
 
                 entity.Property(e => e.FlightNums).HasColumnName("flight_nums");
 
-                entity.Property(e => e.GenderId)
-                    .HasPrecision(1)
-                    .HasColumnName("gender_id");
+                // entity.Property(e => e.GenderId)
+                    // .HasPrecision(1)
+                    // .HasColumnName("gender_id");
 
                 entity.Property(e => e.IsQuota).HasColumnName("is_quota");
 
@@ -170,7 +170,7 @@ namespace AngularTicketsApp
 
                 entity.Property(e => e.OperationId).HasColumnName("operation_id");
 
-                entity.Property(e => e.OperationTimeTimezone).HasColumnName("operation_time_timezone");
+                // entity.Property(e => e.OperationTimeTimezone).HasColumnName("operation_time_timezone");
 
                 entity.Property(e => e.PassengerDocumentDisabledNumber)
                     .HasColumnType("character varying")
@@ -192,9 +192,9 @@ namespace AngularTicketsApp
 
                 entity.Property(e => e.PassengerId).HasColumnName("passenger_id");
 
-                entity.Property(e => e.PassengerTypeId)
-                    .HasPrecision(2)
-                    .HasColumnName("passenger_type_id");
+                // entity.Property(e => e.PassengerTypeId)
+                    // .HasPrecision(2)
+                    // .HasColumnName("passenger_type_id");
 
                 entity.Property(e => e.PassengerTypeName)
                     .HasColumnType("character varying")
@@ -228,7 +228,7 @@ namespace AngularTicketsApp
                     .HasColumnType("character varying")
                     .HasColumnName("surname");
 
-                entity.Property(e => e.TicketId).HasColumnName("ticket_id");
+                // entity.Property(e => e.TicketId).HasColumnName("ticket_id");
 
                 entity.Property(e => e.TicketNumber)
                     .HasColumnType("character varying")
@@ -239,10 +239,11 @@ namespace AngularTicketsApp
                     .HasColumnName("ticket_type");
 
                 entity.Property(e => e.Time)
-                    .HasColumnType("timestamp without time zone")
+                    // .HasColumnType("timestamp without time zone")
                     .HasColumnName("time");
 
-                entity.Property(e => e.TransactionTime).HasColumnName("transaction_time");
+                entity.Property(e => e.TransactionTime)
+                    .HasColumnName("transaction_time");
 
                 entity.Property(e => e.Type)
                     .HasColumnType("character varying")

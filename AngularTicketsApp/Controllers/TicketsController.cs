@@ -9,6 +9,8 @@ using AngularTicketsApp.Data;
 using AngularTicketsApp.Data.Services;
 using CsvHelper;
 using Microsoft.AspNetCore.Mvc;
+using OfficeOpenXml;
+using OfficeOpenXml.Table;
 
 namespace AngularTicketsApp.Controllers
 {
@@ -45,47 +47,28 @@ namespace AngularTicketsApp.Controllers
             return NotFound();
         }
         
-        [HttpPost("csv_by_doc")]
+        [HttpPost("xlsx_by_doc")]
         public async Task<ActionResult> ExportCsvByDocNumber(GenerateFileInputModel inputModel)
         {
             var result = await _service.GetReportByDocumentNumber(inputModel.DocNumber, inputModel.CompanyCode);
-
-            var cd = new ContentDisposition()
-            {
-                FileName = "report.csv",
-                Inline = false
-            };
-            Response.Headers.Add("Content-Disposition", cd.ToString());
-            Response.Headers.Add("Content-Type", "text/csv");
-            return Ok(result);
+            var exportbytes = ExporttoExcel(result, "repost.xlsx");
+            return File(exportbytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "repost.xlsx");
         }
 
-        [HttpPost("csv_by_ticket")]
+        [HttpPost("xlsx_by_ticket")]
         public async Task<ActionResult> ExportCsvByTicketNumber(GenerateFileInputModel inputModel)
         {
             var result = await _service.GetReportByTicketNumber(inputModel.TicketNumber, inputModel.AllTickets, inputModel.CompanyCode);
-            var cd = new ContentDisposition()
-            {
-                FileName = "report.csv",
-                Inline = false
-            };
-            Response.Headers.Add("Content-Disposition", cd.ToString());
-            Response.Headers.Add("Content-Type", "text/csv");
-            return Ok(result);
+            var exportbytes = ExporttoExcel(result, "repost.xlsx");
+            return File(exportbytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "repost.xlsx");
         }
-        
-        [HttpPost("test")]
-        public async Task<ActionResult> FormExportCsv()
+
+        private byte[] ExporttoExcel(IList<DataAll> table, string filename)
         {
-            var result = await _service.GetReportByDocumentNumber("2215123123", "SU");
-            var cd = new ContentDisposition()
-            {
-                FileName = "report.csv",
-                Inline = false
-            };
-            Response.Headers.Add("Content-Disposition", cd.ToString());
-            Response.Headers.Add("Content-Type", "text/csv");
-            return Ok(result);
+            using ExcelPackage pack = new ExcelPackage();
+            ExcelWorksheet ws = pack.Workbook.Worksheets.Add(filename);
+            ws.Cells["A1"].LoadFromCollection(table, true, TableStyles.Light1);
+            return pack.GetAsByteArray();
         }
     }
 }

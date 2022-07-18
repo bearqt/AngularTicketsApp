@@ -11,19 +11,29 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddSpaStaticFiles(configuration => 
-        configuration.RootPath = "ClientApp/dist"
-    );
 
 var csvFormatterOptions = new CsvFormatterOptions();
-csvFormatterOptions.CsvDelimiter = ",";
+csvFormatterOptions.CsvDelimiter = ";";
 
 builder.Services.AddResponseCompression(options => 
 {
     options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "text/csv" });
+});
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder
+                .AllowAnyOrigin() 
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
 });
 
 builder.Services.AddControllers(options =>
@@ -48,24 +58,15 @@ if (app.Environment.IsDevelopment())
 app.UseRouting();
 
 app.UseStaticFiles();
+app.UseCors("AllowAll");
 if (!app.Environment.IsDevelopment())
 {
-    app.UseSpaStaticFiles();
+    app.UseDeveloperExceptionPage();
 }
 
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
-});
-
-app.UseSpa(spa =>
-{
-    spa.Options.SourcePath = "ClientApp";
- 
-    if (app.Environment.IsDevelopment())
-    {
-        spa.UseAngularCliServer(npmScript: "start");
-    }
 });
 
 app.Run();

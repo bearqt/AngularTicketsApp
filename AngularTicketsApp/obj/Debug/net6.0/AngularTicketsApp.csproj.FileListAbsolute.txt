@@ -48,3 +48,15 @@ C:\Users\feikf\RiderProjects\AngularTicketsApp\AngularTicketsApp\bin\Debug\net6.
 C:\Users\feikf\RiderProjects\AngularTicketsApp\AngularTicketsApp\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\feikf\RiderProjects\AngularTicketsApp\AngularTicketsApp\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 C:\Users\feikf\RiderProjects\AngularTicketsApp\AngularTicketsApp\bin\Debug\net6.0\CsvHelper.dll
+C:\Users\feikf\RiderProjects\AngularTicketsApp\AngularTicketsApp\bin\Debug\net6.0\EPPlus.dll
+C:\Users\feikf\RiderProjects\AngularTicketsApp\AngularTicketsApp\bin\Debug\net6.0\EPPlus.Interfaces.dll
+C:\Users\feikf\RiderProjects\AngularTicketsApp\AngularTicketsApp\bin\Debug\net6.0\EPPlus.System.Drawing.dll
+C:\Users\feikf\RiderProjects\AngularTicketsApp\AngularTicketsApp\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\feikf\RiderProjects\AngularTicketsApp\AngularTicketsApp\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\feikf\RiderProjects\AngularTicketsApp\AngularTicketsApp\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\feikf\RiderProjects\AngularTicketsApp\AngularTicketsApp\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\feikf\RiderProjects\AngularTicketsApp\AngularTicketsApp\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\feikf\RiderProjects\AngularTicketsApp\AngularTicketsApp\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\feikf\RiderProjects\AngularTicketsApp\AngularTicketsApp\bin\Debug\net6.0\Data\SqlQueries\AllTicketsByTicketNumberQuery.txt
+C:\Users\feikf\RiderProjects\AngularTicketsApp\AngularTicketsApp\bin\Debug\net6.0\Data\SqlQueries\TicketsByDocNumberQuery.txt
+C:\Users\feikf\RiderProjects\AngularTicketsApp\AngularTicketsApp\bin\Debug\net6.0\Data\SqlQueries\TicketsByTicketNumberQuery.txt
