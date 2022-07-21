@@ -4,8 +4,7 @@ input, label, button, strong {
     display: block;
 }
 
-.search-btn {
-    margin-top: 10px !important;
+.search-btn{
     display: block !important;
     min-width: 150px !important;
 }

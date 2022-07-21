@@ -59,7 +59,7 @@ export class TicketsTableComponent implements OnInit {
   }
   
   saveFile(file) {
-    const blob = new Blob([file], { type: "text/csv" });
+    const blob = new Blob([file], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
     const url = window.URL.createObjectURL(blob);
 
     // create hidden dom element (so it works in all browsers)

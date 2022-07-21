@@ -1,4 +1,4 @@
-<strong>По номеру документа, удостоверяющего личность</strong>
+<strong>По номеру документа</strong>
 
 <mat-form-field>
     <mat-label>Серия и номер документа</mat-label>
@@ -8,7 +8,7 @@
            #documentInput>
     
 </mat-form-field>
-<button mat-raised-button class="search-btn" color="primary" [disabled]="buttonIsDisable"
+<button mat-raised-button class="search-btn" style="margin-top: 59px;" color="primary" [disabled]="buttonIsDisable"
         (click)="searchTickets(documentInput.value);documentInput.value=''; inputChangeHandler()"
 
->Найти данные пассажира</button>
+>Найти</button>

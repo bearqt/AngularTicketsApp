@@ -34,7 +34,7 @@ export class DataService {
             responseType: 'arraybuffer'
         };
 
-        return this.http.post(this.url + "/csv_by_doc", {
+        return this.http.post(this.url + "/xlsx_by_doc", {
                 docNumber,
                 companyCode
             }, options);
@@ -52,7 +52,7 @@ export class DataService {
             responseType: 'arraybuffer'
         };
 
-        return this.http.post(this.url + "/csv_by_ticket", {
+        return this.http.post(this.url + "/xlsx_by_ticket", {
             ticketNumber,
             companyCode,
             allTickets

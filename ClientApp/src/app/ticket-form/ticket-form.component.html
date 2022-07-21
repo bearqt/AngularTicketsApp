@@ -1,4 +1,4 @@
-<strong>По номеру перевозочного документа</strong>
+<strong>По номеру билета</strong>
 <mat-form-field>
     <mat-label>Серия и номер билета</mat-label>
     <input matInput [formControl]="ticketFormControl" [errorStateMatcher]="matcher" type="text" id="ticket-input"
@@ -11,8 +11,8 @@
 </mat-form-field>
 
 <mat-checkbox color="primary" #checkbox>Все билеты пассажира</mat-checkbox>
-<button mat-raised-button color="primary" class="search-btn"
+<button mat-raised-button color="primary" class="search-btn" style="margin-top: 10px;"
         (click)="callEvent(ticketInput.value, checkbox.checked); ticketInput.value=''; inputChangeHandler();"
         [disabled]="buttonIsDisable || ticketFormControl.hasError('pattern')"
 
->Найти информацию по билету</button>
+>Найти</button>
