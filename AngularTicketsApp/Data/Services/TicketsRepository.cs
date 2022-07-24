@@ -54,6 +54,11 @@ namespace AngularTicketsApp.Data.Services
             _logger.LogInformation($"{DateTime.Now}: Returned xlsx report by ticket number ");
             return tickets.ToCompany(companyCode);
         }
+
+        public async Task<IList<AirlineCompany>> GetAllAirlineCompanies()
+        {
+            return await _context.AirlineCompanies.ToListAsync();
+        }
     }
     
     public static class TicketsExtensions

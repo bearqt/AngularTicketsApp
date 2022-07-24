@@ -46,6 +46,12 @@ namespace AngularTicketsApp.Controllers
             }
             return NotFound();
         }
+
+        [HttpGet("airline_companies")]
+        public async Task<ActionResult> GetAirlineCompanies()
+        {
+            return Ok(await _service.GetAllAirlineCompanies());
+        }
         
         [HttpPost("xlsx_by_doc")]
         public async Task<ActionResult> ExportCsvByDocNumber(GenerateFileInputModel inputModel)

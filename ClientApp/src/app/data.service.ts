@@ -22,6 +22,10 @@ export class DataService {
         });
     }
     
+    getAirlineCompanies() {
+        return this.http.get(this.url + "/airline_companies");
+    }
+    
     requestCsvByDocNumber(docNumber: string, companyCode: string) {
         const options: {
             headers?: HttpHeaders;
@@ -58,4 +62,6 @@ export class DataService {
             allTickets
         }, options);
     }
+    
+    
 }

@@ -4,9 +4,11 @@ import {DataService} from "../data.service";
 import { saveAs } from 'file-saver';
 import * as XLSX from "xlsx" ;
 
-export interface AirlineCompany {
-  name: string,
-  code: string
+export class AirlineCompany {
+  constructor(
+      public name: string,
+      public iataCode: string
+  ) { }
 }
 
 @Component({
@@ -26,23 +28,27 @@ export class TicketsTableComponent implements OnInit {
     "sender", "validationStatus", "time", "type", "ticketNumber",
     "departDatetime", "airlineCode", "cityFromName", "cityToName"
   ];
-  airlineCompanies : AirlineCompany[] = [
-    {name: "АО \"Авиакомпания \"Азимут\"\"", code: "A4"},
-    {name: "АО \"Авиакомпания \"Икар\"\"", code: "EO"},
-    {name: "АО \"Авиакомпания \"Россия\"\"", code: "FV"},
-    {name: "АО \"Авиакомпания \"Сибирь\"\"", code: "S7"},
-    {name: "АО \"Авиакомпания \"Якутия\"\"", code: "R3"},
-    {name: "АО \"Авиакомпания АЛРОСА\"", code: "6R"},
-    {name: "АО \"АК НордСтар\"", code: "Y7"},
-    {name: "АО \"АК Смартавиа\"", code: "5N"},
-    {name: "АО \"ИрАэро\"", code: "IO"},
-    {name: "АО \"Ред Вингс\"", code: "WZ"},
-    {name: "ОАО АК \"Уральские авиалинии\"", code: "U6"},
-    {name: "ООО \"Северный Ветер\"", code: "N4"},
-    {name: "ПАО \"Авиакомпания \"Ютэйр\"\"", code: "UT"},
-    {name: "ПАО \"Аэрофлот\"", code: "SU"},
-    {name: "АО \"Авиакомпания «Ижавиа»\"", code: "I8"},
-  ];
+  
+  airlineCompanies : AirlineCompany[] = [];
+  // airlineCompanies : AirlineCompany[] = [
+  //   {name: "АО \"Авиакомпания \"Азимут\"\"", code: "A4"},
+  //   {name: "АО \"Авиакомпания \"Икар\"\"", code: "EO"},
+  //   {name: "АО \"Авиакомпания \"Россия\"\"", code: "FV"},
+  //   {name: "АО \"Авиакомпания \"Сибирь\"\"", code: "S7"},
+  //   {name: "АО \"Авиакомпания \"Якутия\"\"", code: "R3"},
+  //   {name: "АО \"Авиакомпания АЛРОСА\"", code: "6R"},
+  //   {name: "АО \"АК НордСтар\"", code: "Y7"},
+  //   {name: "АО \"АК Смартавиа\"", code: "5N"},
+  //   {name: "АО \"ИрАэро\"", code: "IO"},
+  //   {name: "АО \"Ред Вингс\"", code: "WZ"},
+  //   {name: "ОАО АК \"Уральские авиалинии\"", code: "U6"},
+  //   {name: "ООО \"Северный Ветер\"", code: "N4"},
+  //   {name: "ПАО \"Авиакомпания \"Ютэйр\"\"", code: "UT"},
+  //   {name: "ПАО \"Аэрофлот\"", code: "SU"},
+  //   {name: "АО \"Авиакомпания «Ижавиа»\"", code: "I8"},
+  // ];
+  
+  
   
   selectedCompany : string = "A4";
   downloadCsv(companyCode: string) {
@@ -75,5 +81,9 @@ export class TicketsTableComponent implements OnInit {
   
   constructor(private dataService: DataService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.dataService.getAirlineCompanies().subscribe((data:AirlineCompany[]) => {
+      this.airlineCompanies = data;
+    });
+  }
 }
