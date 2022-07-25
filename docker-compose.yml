@@ -26,10 +26,12 @@ services:
     restart: always
     volumes:
       - ./dbscripts/data_all.sql:/docker-entrypoint-initdb.d/data_all.sql
+      - .:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: "operator"
       POSTGRES_PASSWORD: "password"
       POSTGRES_DB: "ticketsDb"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
     networks:
     - dockerapi-dev
   

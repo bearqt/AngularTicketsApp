@@ -140,3 +140,74 @@ insert into data_all values (
 	'THALSZ', '', 0, 0, 'VVO', 'Владивосток', 'UHWW', 'ВВО', 'Владивосток', 'MOW', 'Москва', 'UUEE', 'ШРМ', 'Шереметьево', '"SU1701, SU1711"',
 	'PZZSOC',740000);
 
+CREATE SEQUENCE airline_company_id_seq;
+CREATE TABLE "airline_company" (
+                                   "id" INTEGER NOT NULL DEFAULT nextval('airline_company_id_seq'::regclass),
+                                   "name" VARCHAR NOT NULL,
+                                   "name_en" VARCHAR NOT NULL,
+                                   "icao_code" VARCHAR NOT NULL,
+                                   "iata_code" VARCHAR NOT NULL,
+                                   "rf_code" VARCHAR NOT NULL,
+                                   "country" VARCHAR NOT NULL,
+                                   PRIMARY KEY ("id")
+);
+
+insert into "airline_company" values (
+                                         1, 'АО "Авиакомпания "Азимут""', 'Azimuth',
+                                         'AZO', 'A4', 'А4', 'Россия');
+
+insert into "airline_company" values (
+                                         2, 'АО "Авиакомпания "Икар""', 'Ikar',
+                                         'KAR', 'EO', 'АЬ', 'Россия');
+
+insert into "airline_company" values (
+                                         3, 'АО "Авиакомпания "Россия""', 'Rossiya',
+                                         'SDM', 'FV', 'ПЛ', 'Россия');
+
+insert into "airline_company" values (
+                                         4, 'АО "Авиакомпания "Сибирь""', 'S7',
+                                         'SBI', 'S7', 'С7', 'Россия');
+
+insert into "airline_company" values (
+                                         5, 'АО "Авиакомпания "Якутия""', 'Yakutia',
+                                         'SYL', 'R3', 'ЯК', 'Россия');
+
+insert into "airline_company" values (
+                                         6, 'АО "Авиакомпания АЛРОСА', 'Alrosa',
+                                         'DRU', '6R', 'ЯМ', 'Россия');
+
+insert into "airline_company" values (
+                                         7, 'АО "АК НордСтар"', 'NordStar',
+                                         'TYA', 'Y7', 'ТИ', 'Россия');
+
+insert into "airline_company" values (
+                                         8, 'АО "АК Смартавиа"', 'Smartavia',
+                                         'AUL', '5N', '5Н', 'Россия');
+
+insert into "airline_company" values (
+                                         9, 'АО "ИрАэро"', 'Iraero',
+                                         'IAE', 'IO', 'РД', 'Россия');
+
+insert into "airline_company" values (
+                                         10, 'АО "Ред Вингс"', 'Red Wings',
+                                         'RWZ', 'WZ', 'ИН', 'Россия');
+
+insert into "airline_company" values (
+                                         11, 'ОАО АК "Уральские авиалинии"', 'Ural Airlines',
+                                         'SVR', 'U6', 'У6', 'Россия');
+
+insert into "airline_company" values (
+                                         12, 'ООО "Северный Ветер', 'Nordwind',
+                                         'NWS', 'N4', 'КЛ', 'Россия');
+
+insert into "airline_company" values (
+                                         13, 'ПАО "Авиакомпания "Ютэйр""', 'UTair',
+                                         'UTA', 'UT', 'ЮТ', 'Россия');
+
+insert into "airline_company" values (
+                                         14, 'ПАО "Аэрофлот"', 'Aeroflot',
+                                         'AFL', 'SU', 'СУ', 'Россия');
+
+insert into "airline_company" values (
+                                         15, 'АО "Авиакомпания «Ижавиа»"', 'Izhavia',
+                                         'IZA', 'I8', 'ИЖ', 'Россия');
