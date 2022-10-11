@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Mime;
 using System.Threading.Tasks;
 using AngularTicketsApp.Data;
+using AngularTicketsApp.Data.Models;
 using AngularTicketsApp.Data.Services;
 using CsvHelper;
 using Microsoft.AspNetCore.Mvc;

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AngularTicketsApp.Data.Models;
 
 namespace AngularTicketsApp.Data.Services
 {

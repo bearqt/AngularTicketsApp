@@ -26,6 +26,7 @@
         <mat-spinner *ngIf="!spinnerIsHidden"></mat-spinner>
         <mat-label *ngIf="responseStatusCode==404 && tickets.length == 0">Результат не найден</mat-label>
         <mat-label *ngIf="responseStatusCode==0 && tickets.length == 0">Сервер недоступен</mat-label>
+        <mat-label *ngIf="responseStatusCode==500 && tickets.length == 0">Произошла ошибка на сервере (status code = 500)</mat-label>
         <app-tickets-table [dataSource]="tickets" *ngIf="spinnerIsHidden && tickets.length > 0"
                             [currentDocNumber]="currentDocNumber"
                            [currentTicketNumber]="currentTicketNumber"

@@ -84,6 +84,7 @@ export class TicketsTableComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.getAirlineCompanies().subscribe((data:AirlineCompany[]) => {
       this.airlineCompanies = data;
+      this.selectedCompany = this.airlineCompanies[0].iataCode;
     });
   }
 }

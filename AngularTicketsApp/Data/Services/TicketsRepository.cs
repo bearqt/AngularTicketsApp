@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AngularTicketsApp.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -32,6 +33,8 @@ namespace AngularTicketsApp.Data.Services
 
         public async Task<IList<DataAll>> GetTicketsByTicketNumberAsync(string ticketNumber, bool displayAllTickets)
         {
+            // if (ticketNumber != "1234567890111")
+            // {
             var queriesPathsSection = _configuration.GetSection("SqlQueriesPaths");
             var queryPath = displayAllTickets
                 ? queriesPathsSection["AllTicketsByTicketNumber"]
@@ -39,6 +42,51 @@ namespace AngularTicketsApp.Data.Services
             var query = await File.ReadAllTextAsync(queryPath);
             _logger.LogInformation($"{DateTime.Now}: Returned tickets list by ticket number ");
             return await _context.DataAlls.FromSqlRaw(query, ticketNumber).ToListAsync();
+            // }
+            // return new List<DataAll>
+            //     {
+            //         new DataAll
+            //         {
+            //             OperationId = 1,
+            //             Type = "someType",
+            //             Time = "12:34",
+            //             Place = "place",
+            //             Sender = "sender",
+            //             TransactionTime = DateTime.Now,
+            //             ValidationStatus = "validation status",
+            //             PassengerId = 1,
+            //             Surname = "surname",
+            //             Name = "name",
+            //             Patronymic = "patronymic",
+            //             Birthdate = "03.07.2001",
+            //             PassengerDocumentId = 1,
+            //             PassengerDocumentType = "type",
+            //             PassengerDocumentNumber = "1234567890",
+            //             PassengerDocumentDisabledNumber = "disabled number",
+            //             PassengerDocumentLargeNumber = "large family",
+            //             PassengerTypeName = "typename",
+            //             PassengerTypeType = "typettype",
+            //             RaCategory = "ra catergory",
+            //             Description = "description",
+            //             IsQuota = true,
+            //             TicketNumber = "1234567890111",
+            //             TicketType = 1,
+            //             AirlineCode = "airlone conde",
+            //             DepartPlace = "deprat place",
+            //             DepartDatetime = "depart datetime",
+            //             ArrivePlace = "arrive place",
+            //             ArriveDatetime = "arrive datetime",
+            //             PnrId = "pnrId",
+            //             OperatingAirlineCode = "airline code",
+            //             CityFromName = "cityFromName",
+            //             AirportFromName = "airport from",
+            //             CityToName = "city to name",
+            //             AirportToName = "airport to name",
+            //             FlightNums = "123",
+            //             FareCode = "fare code",
+            //             FarePrice = 123
+            //         }
+            //     };
         }
 
         public async Task<IList<DataAll>> GetReportByDocumentNumber(string docNumber, string companyCode)

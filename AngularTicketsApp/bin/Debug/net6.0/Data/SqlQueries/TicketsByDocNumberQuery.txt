@@ -134,14 +134,12 @@ where operation.transaction_time IS NOT NULL
 SELECT operation_id,
        type,
        to_char((((utc_time at time zone(original_operation_time_timezone)::TEXT))::TIMESTAMP::TEXT)::TIMESTAMP,'DD.MM.YYYY HH:MI:SS')
-               || CASE WHEN original_operation_time_timezone::TEXT = '0' THEN '+' ELSE '' END
-               || (translate(original_operation_time_timezone::TEXT,'+-','-+')::TEXT) 
-         	    || ':00'
-         	  AS time,
-	
+                      || CASE WHEN original_operation_time_timezone::TEXT = '0' THEN '+' ELSE '' END
+                      || ((original_operation_time_timezone::TEXT)::TEXT) 
+                	    || ':00'
+                	  AS time,
        original_operation_time,
        original_operation_time_timezone,
-	
        place,
        sender,
        transaction_time,
@@ -151,58 +149,44 @@ SELECT operation_id,
        name,
        patronymic,
        to_char(birthdate::TIMESTAMP, 'DD.MM.YYYY') AS birthdate,
-	
-       
        passenger_document_id,
        passenger_document_type,
        passenger_document_number,
        passenger_document_disabled_number,
-       passenger_document_large_number,
-       
+       passenger_document_large_number, 
        passenger_type_name,
        passenger_type_type,
        ra_category,
        description,
        is_quota,
-       
        ticket_number,
        ticket_type,
-       
        airline_code,
        depart_place,
        to_char((((depart_datetime::TIMESTAMP at time zone(depart_datetime_timezone)::TEXT))::TIMESTAMP::TEXT)::TIMESTAMP,'DD.MM.YYYY HH:MI:SS')
-         || CASE WHEN depart_datetime_timezone::TEXT = '0' THEN '+' ELSE '' END  
-         || (translate(depart_datetime_timezone::TEXT,'+-','-+')::TEXT) 
-         || ':00'
-         AS depart_datetime,
+                || CASE WHEN depart_datetime_timezone::TEXT = '0' THEN '+' ELSE '' END  
+                || ((depart_datetime_timezone::TEXT)::TEXT) 
+                || ':00'
+                AS depart_datetime,
        arrive_place,
        to_char((((arrive_datetime::TIMESTAMP at time zone(arrive_datetime_timezone)::TEXT))::TIMESTAMP::TEXT)::TIMESTAMP,'DD.MM.YYYY HH:MI:SS')
-         || CASE WHEN arrive_datetime_timezone::TEXT = '0' THEN '+' ELSE '' END  
-         || (translate(arrive_datetime_timezone::TEXT,'+-','-+')::TEXT) 
-         || ':00'
-         AS arrive_datetime,
+                || CASE WHEN arrive_datetime_timezone::TEXT = '0' THEN '+' ELSE '' END  
+                || ((arrive_datetime_timezone::TEXT)::TEXT) 
+                || ':00'
+                AS arrive_datetime,
        pnr_id,
        operating_airline_code,
-       
-       
        city_from_name,
-	
-       
        airport_from_name,
-       
        city_to_name,
        airport_to_icao_code,
-       
        airport_to_name,
        flight_nums,
        fare_code,
-       fare_price
+       fare_price,
+       utc_time,
+       ticket_number AS original_ticket_number,
+       depart_datetime AS original_depart_datetime 
 FROM data_all
---WHERE ticket_number = '67A6109291214'
-WHERE passenger_id = (SELECT DISTINCT passenger_id FROM ticket WHERE number LIKE '67A6130151616')
---WHERE passenger_document_number = '7600160002' 
---WHERE passenger_document_number LIKE '6015796935'
---AND sender = 'S7'
---AND validation_status IS null
-ORDER BY time,ticket_number
-
+WHERE passenger_document_number = {0}
+ORDER BY utc_time, original_ticket_number, original_depart_datetime, type

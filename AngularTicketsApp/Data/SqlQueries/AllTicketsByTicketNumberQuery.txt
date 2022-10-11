@@ -134,10 +134,10 @@ where operation.transaction_time IS NOT NULL
 SELECT operation_id,
        type,
        to_char((((utc_time at time zone(original_operation_time_timezone)::TEXT))::TIMESTAMP::TEXT)::TIMESTAMP,'DD.MM.YYYY HH:MI:SS')
-               || CASE WHEN original_operation_time_timezone::TEXT = '0' THEN '+' ELSE '' END
-               || (translate(original_operation_time_timezone::TEXT,'+-','-+')::TEXT) 
-         	    || ':00'
-         	  AS time,
+                      || CASE WHEN original_operation_time_timezone::TEXT = '0' THEN '+' ELSE '' END
+                      || ((original_operation_time_timezone::TEXT)::TEXT) 
+                	    || ':00'
+                	  AS time,
        original_operation_time,
        original_operation_time_timezone,
        place,
@@ -164,16 +164,16 @@ SELECT operation_id,
        airline_code,
        depart_place,
        to_char((((depart_datetime::TIMESTAMP at time zone(depart_datetime_timezone)::TEXT))::TIMESTAMP::TEXT)::TIMESTAMP,'DD.MM.YYYY HH:MI:SS')
-         || CASE WHEN depart_datetime_timezone::TEXT = '0' THEN '+' ELSE '' END  
-         || (translate(depart_datetime_timezone::TEXT,'+-','-+')::TEXT) 
-         || ':00'
-         AS depart_datetime,
+                || CASE WHEN depart_datetime_timezone::TEXT = '0' THEN '+' ELSE '' END  
+                || ((depart_datetime_timezone::TEXT)::TEXT) 
+                || ':00'
+                AS depart_datetime,
        arrive_place,
        to_char((((arrive_datetime::TIMESTAMP at time zone(arrive_datetime_timezone)::TEXT))::TIMESTAMP::TEXT)::TIMESTAMP,'DD.MM.YYYY HH:MI:SS')
-         || CASE WHEN arrive_datetime_timezone::TEXT = '0' THEN '+' ELSE '' END  
-         || (translate(arrive_datetime_timezone::TEXT,'+-','-+')::TEXT) 
-         || ':00'
-         AS arrive_datetime,
+                || CASE WHEN arrive_datetime_timezone::TEXT = '0' THEN '+' ELSE '' END  
+                || ((arrive_datetime_timezone::TEXT)::TEXT) 
+                || ':00'
+                AS arrive_datetime,
        pnr_id,
        operating_airline_code,
        city_from_name,
@@ -183,7 +183,10 @@ SELECT operation_id,
        airport_to_name,
        flight_nums,
        fare_code,
-       fare_price
+       fare_price,
+       utc_time,
+       ticket_number AS original_ticket_number,
+       depart_datetime AS original_depart_datetime 
 FROM data_all
-WHERE passenger_document_number = (SELECT  passenger_document_number FROM data_all WHERE ticket_number = {0} LIMIT 1 )
-ORDER BY time, ticket_number, depart_datetime, type
+WHERE passenger_id = (SELECT distinct passenger_id FROM ticket WHERE number = '{0}')
+ORDER BY utc_time, original_ticket_number, original_depart_datetime, type

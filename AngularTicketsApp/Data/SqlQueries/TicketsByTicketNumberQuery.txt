@@ -170,10 +170,10 @@ SELECT operation_id,
          AS depart_datetime,
        arrive_place,
        to_char((((arrive_datetime::TIMESTAMP at time zone(arrive_datetime_timezone)::TEXT))::TIMESTAMP::TEXT)::TIMESTAMP,'DD.MM.YYYY HH:MI:SS')
-         || CASE WHEN arrive_datetime_timezone::TEXT = '0' THEN '+' ELSE '' END  
-         || (translate(arrive_datetime_timezone::TEXT,'+-','-+')::TEXT) 
-         || ':00'
-         AS arrive_datetime,
+                || CASE WHEN arrive_datetime_timezone::TEXT = '0' THEN '+' ELSE '' END  
+                || ((arrive_datetime_timezone::TEXT)::TEXT) 
+                || ':00'
+                AS arrive_datetime,
        pnr_id,
        operating_airline_code,
        city_from_name,
@@ -183,7 +183,10 @@ SELECT operation_id,
        airport_to_name,
        flight_nums,
        fare_code,
-       fare_price
+       fare_price,
+       utc_time,
+       ticket_number AS original_ticket_number,
+       depart_datetime AS original_depart_datetime 
 FROM data_all
 WHERE ticket_number = {0}
 --WHERE passenger_id = (SELECT DISTINCT passenger_id FROM ticket WHERE number LIKE '{0}')
@@ -191,5 +194,5 @@ WHERE ticket_number = {0}
 --WHERE passenger_document_number LIKE '6015796935'
 --AND sender = 'S7'
 --AND validation_status IS null
-ORDER BY time, ticket_number, depart_datetime, type
+ORDER BY utc_time, original_ticket_number, original_depart_datetime, type
 

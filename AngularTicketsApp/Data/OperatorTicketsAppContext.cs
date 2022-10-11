@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using AngularTicketsApp.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
